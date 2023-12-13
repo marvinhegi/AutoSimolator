@@ -33,14 +33,21 @@
             this.labelAutoPSValue = new System.Windows.Forms.Label();
             this.labelAutoPS = new System.Windows.Forms.Label();
             this.panelBackgroundTacho = new System.Windows.Forms.Panel();
+            this.progressBarTank = new System.Windows.Forms.ProgressBar();
+            this.pictureBoxTankKlein = new System.Windows.Forms.PictureBox();
+            this.labelgear = new System.Windows.Forms.Label();
+            this.labelkmh = new System.Windows.Forms.Label();
             this.textBoxKMH = new System.Windows.Forms.TextBox();
             this.textBoxGear = new System.Windows.Forms.TextBox();
+            this.panelMotorAnAus = new System.Windows.Forms.Panel();
             this.buttonGas = new System.Windows.Forms.Button();
             this.buttonBremse = new System.Windows.Forms.Button();
             this.pictureBoxTank = new System.Windows.Forms.PictureBox();
             this.pictureBoxHupe = new System.Windows.Forms.PictureBox();
             this.pictureBoxSchlussel = new System.Windows.Forms.PictureBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panelBackgroundTacho.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTankKlein)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTank)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHupe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSchlussel)).BeginInit();
@@ -62,6 +69,7 @@
             this.comboBoxAutoWahlen.Name = "comboBoxAutoWahlen";
             this.comboBoxAutoWahlen.Size = new System.Drawing.Size(197, 24);
             this.comboBoxAutoWahlen.TabIndex = 1;
+            this.comboBoxAutoWahlen.SelectedIndexChanged += new System.EventHandler(this.comboBoxAutoWahlen_SelectedIndexChanged);
             // 
             // labelAutoPSValue
             // 
@@ -83,7 +91,11 @@
             // 
             // panelBackgroundTacho
             // 
-            this.panelBackgroundTacho.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panelBackgroundTacho.BackColor = System.Drawing.Color.Silver;
+            this.panelBackgroundTacho.Controls.Add(this.progressBarTank);
+            this.panelBackgroundTacho.Controls.Add(this.pictureBoxTankKlein);
+            this.panelBackgroundTacho.Controls.Add(this.labelgear);
+            this.panelBackgroundTacho.Controls.Add(this.labelkmh);
             this.panelBackgroundTacho.Controls.Add(this.textBoxKMH);
             this.panelBackgroundTacho.Controls.Add(this.textBoxGear);
             this.panelBackgroundTacho.Location = new System.Drawing.Point(103, 76);
@@ -91,27 +103,76 @@
             this.panelBackgroundTacho.Size = new System.Drawing.Size(322, 144);
             this.panelBackgroundTacho.TabIndex = 5;
             // 
+            // progressBarTank
+            // 
+            this.progressBarTank.Location = new System.Drawing.Point(46, 106);
+            this.progressBarTank.Name = "progressBarTank";
+            this.progressBarTank.Size = new System.Drawing.Size(259, 23);
+            this.progressBarTank.TabIndex = 13;
+            // 
+            // pictureBoxTankKlein
+            // 
+            this.pictureBoxTankKlein.Image = global::AutoSimolator.Properties.Resources.Tank;
+            this.pictureBoxTankKlein.Location = new System.Drawing.Point(17, 106);
+            this.pictureBoxTankKlein.Name = "pictureBoxTankKlein";
+            this.pictureBoxTankKlein.Size = new System.Drawing.Size(23, 24);
+            this.pictureBoxTankKlein.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxTankKlein.TabIndex = 13;
+            this.pictureBoxTankKlein.TabStop = false;
+            // 
+            // labelgear
+            // 
+            this.labelgear.AutoSize = true;
+            this.labelgear.Location = new System.Drawing.Point(238, 18);
+            this.labelgear.Name = "labelgear";
+            this.labelgear.Size = new System.Drawing.Size(37, 16);
+            this.labelgear.TabIndex = 11;
+            this.labelgear.Text = "Gear";
+            // 
+            // labelkmh
+            // 
+            this.labelkmh.AutoSize = true;
+            this.labelkmh.Location = new System.Drawing.Point(14, 18);
+            this.labelkmh.Name = "labelkmh";
+            this.labelkmh.Size = new System.Drawing.Size(36, 16);
+            this.labelkmh.TabIndex = 10;
+            this.labelkmh.Text = "km/h";
+            // 
             // textBoxKMH
             // 
             this.textBoxKMH.BackColor = System.Drawing.SystemColors.InfoText;
+            this.textBoxKMH.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
             this.textBoxKMH.ForeColor = System.Drawing.Color.Lime;
             this.textBoxKMH.Location = new System.Drawing.Point(17, 37);
             this.textBoxKMH.Multiline = true;
             this.textBoxKMH.Name = "textBoxKMH";
-            this.textBoxKMH.Size = new System.Drawing.Size(182, 54);
+            this.textBoxKMH.ReadOnly = true;
+            this.textBoxKMH.Size = new System.Drawing.Size(207, 54);
             this.textBoxKMH.TabIndex = 8;
             this.textBoxKMH.Text = "0";
+            this.textBoxKMH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxGear
             // 
             this.textBoxGear.BackColor = System.Drawing.SystemColors.ControlText;
+            this.textBoxGear.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
             this.textBoxGear.ForeColor = System.Drawing.Color.Cyan;
-            this.textBoxGear.Location = new System.Drawing.Point(221, 37);
+            this.textBoxGear.Location = new System.Drawing.Point(241, 37);
             this.textBoxGear.Multiline = true;
             this.textBoxGear.Name = "textBoxGear";
-            this.textBoxGear.Size = new System.Drawing.Size(84, 54);
+            this.textBoxGear.ReadOnly = true;
+            this.textBoxGear.Size = new System.Drawing.Size(64, 54);
             this.textBoxGear.TabIndex = 7;
-            this.textBoxGear.Text = "0";
+            this.textBoxGear.Text = "1";
+            this.textBoxGear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // panelMotorAnAus
+            // 
+            this.panelMotorAnAus.BackColor = System.Drawing.Color.Red;
+            this.panelMotorAnAus.Location = new System.Drawing.Point(103, 50);
+            this.panelMotorAnAus.Name = "panelMotorAnAus";
+            this.panelMotorAnAus.Size = new System.Drawing.Size(322, 28);
+            this.panelMotorAnAus.TabIndex = 12;
             // 
             // buttonGas
             // 
@@ -121,6 +182,9 @@
             this.buttonGas.TabIndex = 0;
             this.buttonGas.Text = "Gas";
             this.buttonGas.UseVisualStyleBackColor = true;
+            this.buttonGas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonGas_MouseDown);
+
+            this.buttonGas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.buttonGas_MouseUp);
             // 
             // buttonBremse
             // 
@@ -140,6 +204,7 @@
             this.pictureBoxTank.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxTank.TabIndex = 9;
             this.pictureBoxTank.TabStop = false;
+            this.pictureBoxTank.Click += new System.EventHandler(this.pictureBoxTank_Click);
             // 
             // pictureBoxHupe
             // 
@@ -160,12 +225,14 @@
             this.pictureBoxSchlussel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxSchlussel.TabIndex = 7;
             this.pictureBoxSchlussel.TabStop = false;
+            this.pictureBoxSchlussel.Click += new System.EventHandler(this.pictureBoxSchlussel_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panelMotorAnAus);
             this.Controls.Add(this.pictureBoxTank);
             this.Controls.Add(this.pictureBoxHupe);
             this.Controls.Add(this.pictureBoxSchlussel);
@@ -178,8 +245,10 @@
             this.Controls.Add(this.labelAutowahlen);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panelBackgroundTacho.ResumeLayout(false);
             this.panelBackgroundTacho.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTankKlein)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTank)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHupe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSchlussel)).EndInit();
@@ -202,6 +271,12 @@
         private System.Windows.Forms.PictureBox pictureBoxSchlussel;
         private System.Windows.Forms.PictureBox pictureBoxHupe;
         private System.Windows.Forms.PictureBox pictureBoxTank;
+        private System.Windows.Forms.Label labelkmh;
+        private System.Windows.Forms.Label labelgear;
+        private System.Windows.Forms.Panel panelMotorAnAus;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.PictureBox pictureBoxTankKlein;
+        private System.Windows.Forms.ProgressBar progressBarTank;
     }
 }
 
