@@ -183,7 +183,6 @@
             this.buttonGas.Text = "Gas";
             this.buttonGas.UseVisualStyleBackColor = true;
             this.buttonGas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonGas_MouseDown);
-
             this.buttonGas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.buttonGas_MouseUp);
             // 
             // buttonBremse
@@ -194,6 +193,8 @@
             this.buttonBremse.TabIndex = 6;
             this.buttonBremse.Text = "Bremse";
             this.buttonBremse.UseVisualStyleBackColor = true;
+            this.buttonBremse.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonBremse_MouseDown);
+            this.buttonBremse.MouseUp += new System.Windows.Forms.MouseEventHandler(this.buttonBremse_MouseUp);
             // 
             // pictureBoxTank
             // 

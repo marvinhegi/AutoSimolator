@@ -61,7 +61,13 @@ namespace AutoSimolator
                     Auto auto = comboBoxAutoWahlen.SelectedItem as Auto;
                 if (auto.IstMotorGestartet != true)
                 {
-                    auto.auftanken();
+                    if (auto.AktuelleGeschwindikeit <= 0)
+                    {
+                        auto.auftanken();
+                    }
+                    else{
+                        MessageBox.Show("Stop driving and slow down your car!");
+                    }
                 }
                 else
                 {
@@ -88,6 +94,8 @@ namespace AutoSimolator
                     {
                         panelMotorAnAus.BackColor = Color.Red;
                     }
+                    textBoxKMH.Text = auto.AktuelleGeschwindikeit.ToString();
+                    textBoxGear.Text = auto.AktuellerGang.ToString();
                 }
                 else
                 {
@@ -144,6 +152,35 @@ namespace AutoSimolator
             Gasgeben = false;
         }
 
-      
+
+        bool bremsen = false;
+        private void buttonBremse_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (comboBoxAutoWahlen.SelectedItem != null)
+            {
+                Auto auto = comboBoxAutoWahlen.SelectedItem as Auto;
+                bremsen = true;
+
+                while (bremsen == true)
+                {
+                    Application.DoEvents();
+                    auto.Bremse();
+                    textBoxKMH.Text = auto.AktuelleGeschwindikeit.ToString();
+                    textBoxGear.Text = auto.AktuellerGang.ToString();
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Car Selected");
+
+            }
+
+        }
+
+        private void buttonBremse_MouseUp(object sender, MouseEventArgs e)
+        {
+            bremsen = false;
+        }
     }
 }

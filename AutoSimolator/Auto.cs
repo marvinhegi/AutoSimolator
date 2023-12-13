@@ -18,11 +18,13 @@ namespace AutoSimolator
         bool istMotorGestartet = false;
         int aktuelleGeschwindikeit = 0;
         int aktuellerGang = 1;
+        int zahlerfullstand = 0;
 
         public int AktuelleGeschwindikeit
         {
             get { return aktuelleGeschwindikeit; }
         }
+      
         public int AktuellerGang
         {
             get { return aktuellerGang; }
@@ -112,30 +114,59 @@ namespace AutoSimolator
             }
 
             BerechneGang();
-
-            //zählermachen
-            if (tankFeullstand - (aktuellerGang / 5) >= 0 && tankFeullstand-1 >=0)
-            {
-                if ((aktuellerGang / 2) <= 0)
-                {
-                    tankFeullstand--;
-                }
-                else
-                {
-                    tankFeullstand = tankFeullstand - (aktuellerGang / 2);
-                }
-            }
-            else
-            {
-                SchalteMotorAus();
-                aktuelleGeschwindikeit = 0;
-                return;
-            }
+            FuellstandBerechnen();
+            
 
 
             int beschleunigung = 2 * aktuellerGang;
             double sleeptime = 100000 / ps / beschleunigung;
             Thread.Sleep(Convert.ToInt32(sleeptime));
+        }
+
+        public void Bremse()
+        {
+            if (aktuelleGeschwindikeit > 0)
+            {
+                aktuelleGeschwindikeit --;
+            }
+
+            BerechneGang();
+            
+
+
+            // noch bessere Rechnung
+          
+            double sleeptime = 100000 / ps / 8;
+            Thread.Sleep(Convert.ToInt32(sleeptime));
+        }
+
+        public void FuellstandBerechnen()
+        {
+            if (zahlerfullstand % 10 == 0)
+            {
+                if (tankFeullstand - (aktuellerGang / 5) >= 0 && tankFeullstand - 1 >= 0)
+                {
+                    if ((aktuellerGang / 2) <= 0)
+                    {
+                        tankFeullstand--;
+                    }
+                    else
+                    {
+                        tankFeullstand = tankFeullstand - (aktuellerGang / 2);
+                    }
+                }
+                else
+                {
+                    SchalteMotorAus();
+                    aktuelleGeschwindikeit = 0;
+                    return;
+                }
+            }
+            zahlerfullstand++;
+            if (tankFeullstand < 0)
+            {
+                tankFeullstand = 0;
+            }
         }
 
 
