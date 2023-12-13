@@ -94,20 +94,24 @@
             // textBoxKMH
             // 
             this.textBoxKMH.BackColor = System.Drawing.SystemColors.InfoText;
+            this.textBoxKMH.ForeColor = System.Drawing.Color.Lime;
             this.textBoxKMH.Location = new System.Drawing.Point(17, 37);
             this.textBoxKMH.Multiline = true;
             this.textBoxKMH.Name = "textBoxKMH";
             this.textBoxKMH.Size = new System.Drawing.Size(182, 54);
             this.textBoxKMH.TabIndex = 8;
+            this.textBoxKMH.Text = "0";
             // 
             // textBoxGear
             // 
-            this.textBoxGear.BackColor = System.Drawing.SystemColors.InfoText;
+            this.textBoxGear.BackColor = System.Drawing.SystemColors.ControlText;
+            this.textBoxGear.ForeColor = System.Drawing.Color.Cyan;
             this.textBoxGear.Location = new System.Drawing.Point(221, 37);
             this.textBoxGear.Multiline = true;
             this.textBoxGear.Name = "textBoxGear";
             this.textBoxGear.Size = new System.Drawing.Size(84, 54);
             this.textBoxGear.TabIndex = 7;
+            this.textBoxGear.Text = "0";
             // 
             // buttonGas
             // 
