@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace AutoSimolator
                 Auto auto = new Auto(Marken[i], Convert.ToInt32(PS[i]));
                 comboBoxAutoWahlen.Items.Add(auto);
             }
-
+            
 
         }
 
@@ -64,6 +65,8 @@ namespace AutoSimolator
                     if (auto.AktuelleGeschwindikeit <= 0)
                     {
                         auto.auftanken();
+                        SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\glas-get-filled-with-water-in-sink-97294.wav");
+                        simpleSound.Play();
                     }
                     else{
                         MessageBox.Show("Stop driving and slow down your car!");
@@ -151,6 +154,7 @@ namespace AutoSimolator
         {
             Gasgeben = false;
         }
+       
 
 
         bool bremsen = false;
@@ -181,6 +185,29 @@ namespace AutoSimolator
         private void buttonBremse_MouseUp(object sender, MouseEventArgs e)
         {
             bremsen = false;
+        }
+
+        private void pictureBoxHupe_Click(object sender, EventArgs e)
+        {
+            if (comboBoxAutoWahlen.SelectedItem != null)
+            {
+                Auto auto = comboBoxAutoWahlen.SelectedItem as Auto;
+               
+                if (auto.IstMotorGestartet == true)
+                {
+                    SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\car-horn-6408.wav");
+                    simpleSound.Play();
+                }
+                else
+                {
+                    MessageBox.Show("start engine");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Car Selected");
+
+            }
         }
     }
 }

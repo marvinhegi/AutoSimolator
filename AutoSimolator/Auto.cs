@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -62,6 +63,8 @@ namespace AutoSimolator
         {
             istMotorGestartet = false;
             BerechneGang();
+            SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\car-engine-starting-43705.wav");
+            simpleSound.Play();
 
 
         }
@@ -71,9 +74,22 @@ namespace AutoSimolator
             if (tankFeullstand > 0)
             {
                 istMotorGestartet = true;
+                SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\carengine-5998.wav");
+                simpleSound.Play();
+
+               /* while (IstMotorGestartet == true)
+                {
+                    Application.DoEvents();
+                    Thread.Sleep(8000);
+                    SoundPlayer simpleSound2 = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\car-acceleration-inside-car-7087.wav");
+                    simpleSound2.Play();
+                    
+                } */
             }
             else
             {
+                SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\car-engine-starting-43705.wav");
+                simpleSound.Play();
                 MessageBox.Show("Out of fuel!");
             }
         }
@@ -115,8 +131,8 @@ namespace AutoSimolator
 
             BerechneGang();
             FuellstandBerechnen();
-            
 
+            
 
             int beschleunigung = 2 * aktuellerGang;
             double sleeptime = 100000 / ps / beschleunigung;
@@ -159,6 +175,9 @@ namespace AutoSimolator
                 {
                     SchalteMotorAus();
                     aktuelleGeschwindikeit = 0;
+                    SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\crash-1-154890.wav");
+                    simpleSound.Play();
+                    
                     return;
                 }
             }

@@ -216,6 +216,7 @@
             this.pictureBoxHupe.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxHupe.TabIndex = 8;
             this.pictureBoxHupe.TabStop = false;
+            this.pictureBoxHupe.Click += new System.EventHandler(this.pictureBoxHupe_Click);
             // 
             // pictureBoxSchlussel
             // 
