@@ -56,6 +56,8 @@ namespace AutoSimolator
         public void auftanken()
         {
             tankFeullstand = 100;
+            SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.glas_get_filled_with_water_in_sink_97294);
+            simpleSound.Play();
         }
 
         
@@ -63,7 +65,7 @@ namespace AutoSimolator
         {
             istMotorGestartet = false;
             BerechneGang();
-            SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\car-engine-starting-43705.wav");
+            SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.car_engine_starting_43705);
             simpleSound.Play();
 
 
@@ -74,7 +76,7 @@ namespace AutoSimolator
             if (tankFeullstand > 0)
             {
                 istMotorGestartet = true;
-                SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\carengine-5998.wav");
+                SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.carengine_5998);
                 simpleSound.Play();
 
                /* while (IstMotorGestartet == true)
@@ -88,9 +90,9 @@ namespace AutoSimolator
             }
             else
             {
-                SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\car-engine-starting-43705.wav");
+                SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.car_engine_starting_43705);
                 simpleSound.Play();
-                MessageBox.Show("Out of fuel!");
+                throw new Exception("Out of fuel!");
             }
         }
 
@@ -175,7 +177,7 @@ namespace AutoSimolator
                 {
                     SchalteMotorAus();
                     aktuelleGeschwindikeit = 0;
-                    SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\crash-1-154890.wav");
+                    SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.crash_1_154890);
                     simpleSound.Play();
                     
                     return;
@@ -193,6 +195,12 @@ namespace AutoSimolator
         public override string ToString()
         {
             return this.marke;
+        }
+
+        public void Hupen()
+        {
+            SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.car_horn_6408);
+            simpleSound.Play();
         }
     }
 }

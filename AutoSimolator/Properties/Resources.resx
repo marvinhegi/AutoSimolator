@@ -130,4 +130,22 @@
   <data name="Tank" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carengine_5998" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Sounds\carengine-5998.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car_acceleration_inside_car_7087" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Sounds\car-acceleration-inside-car-7087.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car_engine_starting_43705" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Sounds\car-engine-starting-43705.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="car_horn_6408" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Sounds\car-horn-6408.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="crash_1_154890" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Sounds\crash-1-154890.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="glas_get_filled_with_water_in_sink_97294" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Sounds\glas-get-filled-with-water-in-sink-97294.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

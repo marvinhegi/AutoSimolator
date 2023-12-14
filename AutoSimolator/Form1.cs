@@ -65,8 +65,7 @@ namespace AutoSimolator
                     if (auto.AktuelleGeschwindikeit <= 0)
                     {
                         auto.auftanken();
-                        SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\glas-get-filled-with-water-in-sink-97294.wav");
-                        simpleSound.Play();
+                       
                     }
                     else{
                         MessageBox.Show("Stop driving and slow down your car!");
@@ -87,31 +86,39 @@ namespace AutoSimolator
 
         private void pictureBoxSchlussel_Click(object sender, EventArgs e)
         {
-            if (comboBoxAutoWahlen.SelectedItem != null)
+            try
             {
-                Auto auto = comboBoxAutoWahlen.SelectedItem as Auto;
-                if (auto.IstMotorGestartet == true)
+                if (comboBoxAutoWahlen.SelectedItem != null)
                 {
-                    auto.SchalteMotorAus();
-                    if (auto.IstMotorGestartet != true)
+
+                    Auto auto = comboBoxAutoWahlen.SelectedItem as Auto;
+                    if (auto.IstMotorGestartet == true)
                     {
-                        panelMotorAnAus.BackColor = Color.Red;
+                        auto.SchalteMotorAus();
+                        if (auto.IstMotorGestartet != true)
+                        {
+                            panelMotorAnAus.BackColor = Color.Red;
+                        }
+                        textBoxKMH.Text = auto.AktuelleGeschwindikeit.ToString();
+                        textBoxGear.Text = auto.AktuellerGang.ToString();
                     }
-                    textBoxKMH.Text = auto.AktuelleGeschwindikeit.ToString();
-                    textBoxGear.Text = auto.AktuellerGang.ToString();
+                    else
+                    {
+                        auto.SchalteMotorEin();
+                        if (auto.IstMotorGestartet == true)
+                        {
+                            panelMotorAnAus.BackColor = Color.Green;
+                        }
+                    }
                 }
                 else
                 {
-                    auto.SchalteMotorEin();
-                    if (auto.IstMotorGestartet == true)
-                    {
-                        panelMotorAnAus.BackColor = Color.Green;
-                    }
+                    MessageBox.Show("No Car Selected");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No Car Selected");
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -195,8 +202,8 @@ namespace AutoSimolator
                
                 if (auto.IstMotorGestartet == true)
                 {
-                    SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\MarvinHegi\OneDrive - Luzerner IT Solution GmbH\Marvin\Bassislehrjahr\oop\AutoSimolator\Sounds\car-horn-6408.wav");
-                    simpleSound.Play();
+                    auto.Hupen();
+                    
                 }
                 else
                 {
